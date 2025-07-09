@@ -31,7 +31,7 @@ with pkgs;
   ffmpeg
   fd
   fira-code
-  fira-code-nerdfont
+  nerd-fonts.fira-code
   font-awesome
   hack-font
   noto-fonts
