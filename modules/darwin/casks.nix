@@ -5,7 +5,6 @@ _:
   "iterm2"
 
   # Communication Tools
-  "notion"
   "slack"
   "zoom"
 
@@ -17,7 +16,12 @@ _:
   "spotify"
 
   # Productivity Tools
+  "notion"
+  "notion-calendar"
 
   # Browsers
   "firefox"
+
+  # Creative Tools
+  "adobe-creative-cloud"
 ]
