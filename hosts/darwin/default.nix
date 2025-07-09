@@ -60,13 +60,10 @@ in
     ++ (import ../../modules/shared/packages.nix { inherit pkgs; });
 
   # Font configuration
-  fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
-      fira-code
-      fira-code-nerdfont
-    ];
-  };
+  fonts.packages = with pkgs; [
+    fira-code
+    fira-code-nerdfont
+  ];
 
   # System activation scripts
   system.activationScripts.extraActivation.text = ''
