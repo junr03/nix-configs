@@ -2,7 +2,6 @@ _:
 
 [
   # Development Tools
-  "homebrew/cask/docker"
   "iterm2"
 
   # Communication Tools
@@ -12,6 +11,7 @@ _:
 
   # Utility Tools
   "loop"
+  "tailscale" # GUI app for menu bar access
 
   # Entertainment Tools
   "spotify"
