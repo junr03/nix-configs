@@ -12,6 +12,7 @@ _:
 
   # Utility Tools
   "loop"
+  "tailscale" # GUI app for menu bar access
 
   # Entertainment Tools
   "spotify"
