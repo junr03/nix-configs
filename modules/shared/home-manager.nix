@@ -38,14 +38,10 @@ let name = "Jose Ulises Nino Rivera";
       # Ripgrep alias
       alias search=rg -p --glob '!node_modules/*'  $@
 
-      # Emacs is my editor
+      # code is my editor
       export ALTERNATE_EDITOR=""
-      export EDITOR="emacsclient -t"
-      export VISUAL="emacsclient -c -a emacs"
-
-      e() {
-          emacsclient -t "$@"
-      }
+      export EDITOR="code"
+      export VISUAL="code"
 
       # nix shortcuts
       shell() {
