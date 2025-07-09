@@ -71,7 +71,7 @@ in
       entries = [
         { path = "/Applications/Slack.app/"; }
         { path = "/System/Applications/Messages.app/"; }
-        # { path = "${pkgs.alacritty}/Applications/Alacritty.app/"; }
+        { path = "/Applications/iTerm.app/"; }
       ];
     };
   };

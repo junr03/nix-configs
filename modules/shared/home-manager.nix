@@ -316,6 +316,19 @@ in
         "extensions.autoCheckUpdates" = false;
         "extensions.autoUpdate" = false;
         "github.copilot.nextEditSuggestions.enabled" = true;
+        "terminal.integrated.fontFamily" = "FiraCode Nerd Font";
+        "terminal.integrated.fontSize" = 14;
+        "terminal.integrated.fontWeight" = "normal";
+        "editor.fontFamily" = "FiraCode Nerd Font, 'Courier New', monospace";
+        "editor.fontSize" = 14;
+        "editor.fontLigatures" = true;
+        "editor.fontWeight" = "400";
+        "terminal.integrated.profiles.osx" = {
+          "iTerm2" = {
+            "path" = "iterm2";
+            "args" = [];
+          };
+        };
       };
 
       extensions = with pkgs.vscode-marketplace; [

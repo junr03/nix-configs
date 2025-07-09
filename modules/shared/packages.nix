@@ -1,6 +1,7 @@
 { pkgs }:
 
-with pkgs; [
+with pkgs;
+[
   # General packages for development and system management
   aspell
   aspellDicts.en
@@ -29,6 +30,8 @@ with pkgs; [
   dejavu_fonts
   ffmpeg
   fd
+  fira-code
+  fira-code-nerdfont
   font-awesome
   hack-font
   noto-fonts
@@ -53,7 +56,7 @@ with pkgs; [
   unzip
   zsh-powerlevel10k
   nixfmt-rfc-style
-  
+
   # Python packages
   python3
   virtualenv

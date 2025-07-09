@@ -8,4 +8,10 @@
   # ".ssh/id_github.pub" = {
   #   text = githubPublicKey;
   # };
+
+  # iTerm2 AppleScript configuration script
+  ".config/iterm2/configure-iterm2.applescript" = {
+    source = ./config/configure-iterm2.applescript;
+    executable = true;
+  };
 }
