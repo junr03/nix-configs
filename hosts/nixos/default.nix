@@ -279,8 +279,8 @@ in
   };
 
   # Add docker daemon
-  virtualisation.docker.enable = true;
-  virtualisation.docker.logDriver = "json-file";
+  # virtualisation.docker.enable = true;
+  # virtualisation.docker.logDriver = "json-file";
 
   # It's me, it's you, it's everyone
   users.users = {
