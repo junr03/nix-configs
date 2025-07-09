@@ -61,11 +61,11 @@ let user = "junr03"; in
       };
 
       dock = {
-        autohide = false;
+        autohide = true;
         show-recents = false;
         launchanim = true;
         orientation = "bottom";
-        tilesize = 48;
+        tilesize = 96;
       };
 
       finder = {
