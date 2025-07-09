@@ -309,6 +309,7 @@ let name = "Jose Ulises Nino Rivera";
         "workbench.colorTheme" = "Gruvbox Dark Medium";
         "extensions.autoCheckUpdates" = false;
         "extensions.autoUpdate" = false;
+        "github.copilot.nextEditSuggestions.enabled": true
       };
 
       extensions = with pkgs.vscode-marketplace; [
