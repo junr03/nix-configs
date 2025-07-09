@@ -52,7 +52,7 @@ with pkgs; [
   unrar
   unzip
   zsh-powerlevel10k
-  nixfmt
+  nixfmt-rfc-style
   
   # Python packages
   python3
