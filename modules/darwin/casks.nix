@@ -2,7 +2,6 @@ _:
 
 [
   # Development Tools
-  "homebrew/cask/docker"
   "iterm2"
 
   # Communication Tools
