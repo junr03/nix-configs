@@ -13,6 +13,7 @@ _:
   "loop"
 
   # Entertainment Tools
+  "spotify"
 
   # Productivity Tools
 
