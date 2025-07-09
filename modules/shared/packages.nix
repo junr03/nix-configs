@@ -52,7 +52,8 @@ with pkgs; [
   unrar
   unzip
   zsh-powerlevel10k
-
+  nixfmt
+  
   # Python packages
   python3
   virtualenv

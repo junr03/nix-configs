@@ -10,6 +10,7 @@ _:
   "zoom"
 
   # Utility Tools
+  "loop"
 
   # Entertainment Tools
 
