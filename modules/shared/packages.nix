@@ -27,7 +27,6 @@ with pkgs;
   # docker-compose
 
   # Networking tools
-  tailscale
 
   # Media-related packages
   dejavu_fonts
