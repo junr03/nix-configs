@@ -26,6 +26,9 @@ with pkgs;
   docker
   docker-compose
 
+  # Networking tools
+  tailscale
+
   # Media-related packages
   dejavu_fonts
   ffmpeg
