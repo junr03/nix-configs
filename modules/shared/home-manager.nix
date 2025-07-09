@@ -326,7 +326,7 @@ in
         "terminal.integrated.profiles.osx" = {
           "iTerm2" = {
             "path" = "iterm2";
-            "args" = [];
+            "args" = [ ];
           };
         };
       };
