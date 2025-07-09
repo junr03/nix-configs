@@ -31,7 +31,6 @@ shared-packages ++ [
   rofi
   rofi-calc
   postgresql
-  libtool # for Emacs vterm
 
   # Screenshot and recording tools
   flameshot
@@ -42,7 +41,6 @@ shared-packages ++ [
   tree
   unixtools.ifconfig
   unixtools.netstat
-  xclip # For the org-download package in Emacs
   xorg.xwininfo # Provides a cursor to click and learn about windows
   xorg.xrandr
 
@@ -57,7 +55,7 @@ shared-packages ++ [
   # Other utilities
   yad # yad-calendar is used with polybar
   xdotool
-  google-chrome
+  firefox
 
   # PDF viewer
   zathura

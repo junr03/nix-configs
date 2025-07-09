@@ -47,16 +47,6 @@ let
       notify-send 'Waiting for network...'
       while ! systemctl is-active --quiet network-online.target; do sleep 1; done
       notify-send 'Network found.'
-
-      # Wait for the Emacs daemon
-      notify-send 'Starting Emacs...'
-      /run/current-system/sw/bin/emacsclient -a "" -e '(progn)' &
-
-      # Wait for Emacs daemon to be ready
-      while ! /run/current-system/sw/bin/emacsclient -e '(progn)' &>/dev/null; do
-      sleep 1
-      done
-      notify-send 'Emacs daemon started.'
     '';
   };
 
@@ -181,19 +171,7 @@ let
     super + shift + x
           /etc/profiles/per-user/${user}/bin/keepassxc
 
-    # Emacs
-    # -c flag is --create-frame
-    # -a flag is fallback to plain emacs if daemon fails
-    super + alt + Return
-         emacsclient -c -a emacs
-
-    super + alt + e
-         systemctl --user restart emacs.service && \
-         emacsclient -c -a emacs
-
     # Web browser
-    ctrl + alt + Return
-         google-chrome-stable
 
     # File browser at home dir
     super + shift + @space
@@ -252,15 +230,6 @@ let
       UPDATES=$(/run/current-system/sw/bin/git -C ~/.local/share/src/nixpkgs rev-list origin/master..upstream/master --count 2>/dev/null);
       /run/current-system/sw/bin/echo " $UPDATES"; # Extra space for presentation with icon
       /run/current-system/sw/bin/sleep 1800;
-    '';
-  };
-
-  "${xdg_configHome}/polybar/bin/search-nixos-updates.sh" = {
-    executable = true;
-    text = ''
-      #!/bin/sh
-
-      /etc/profiles/per-user/${user}/bin/google-chrome-stable --new-window "https://search.nixos.org/packages"
     '';
   };
 
