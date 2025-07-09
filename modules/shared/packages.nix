@@ -44,6 +44,7 @@ with pkgs;
   nodejs
 
   # Text and terminal utilities
+  displayplacer
   htop
   hunspell
   iftop
