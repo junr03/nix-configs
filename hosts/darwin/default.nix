@@ -114,18 +114,4 @@ in
       };
     };
   };
-
-  # Additional system configuration for display resolution
-  system.activationScripts.displayConfig.text = ''
-    echo "📺 Display Configuration:"
-    echo "To set display resolution to 2560x1440 (scaled):"
-    echo "1. Open System Preferences > Displays"
-    echo "2. Select 'Scaled' option"
-    echo "3. Choose '2560 x 1440' resolution"
-    echo ""
-    echo "Alternative: Install displayplacer manually if needed:"
-    echo "  brew tap jakehilborn/jakehilborn"
-    echo "  brew install displayplacer"
-    echo "  displayplacer 'id:1 res:2560x1440 hz:60 color_depth:8 scaling:on origin:(0,0) degree:0'"
-  '';
 }
