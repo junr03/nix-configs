@@ -120,9 +120,13 @@ in
     # Set display resolution to 2560x1440 (scaled)
     echo "Configuring display resolution..."
     
-    # Get the display ID (usually 1 for main display)
-    ${pkgs.displayplacer}/bin/displayplacer "id:1 res:2560x1440 hz:60 color_depth:8 scaling:on origin:(0,0) degree:0" 2>/dev/null || true
-    
-    echo "Display configuration applied"
+    # Use displayplacer (installed via Homebrew) to set display resolution
+    if command -v displayplacer >/dev/null 2>&1; then
+      displayplacer "id:1 res:2560x1440 hz:60 color_depth:8 scaling:on origin:(0,0) degree:0" 2>/dev/null || true
+      echo "Display resolution set to 2560x1440 (scaled)"
+    else
+      echo "displayplacer not found - will be installed via Homebrew on next build"
+      echo "Manual setup: System Preferences > Displays > Scaled > 2560x1440"
+    fi
   '';
 }
