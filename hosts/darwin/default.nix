@@ -112,11 +112,6 @@ in
         Clicking = true;
         TrackpadThreeFingerDrag = true;
       };
-
-      # Display configuration
-      "com.apple.windowserver" = {
-        DisplayResolutionEnabled = true;
-      };
     };
   };
 
@@ -126,7 +121,7 @@ in
     echo "Configuring display resolution..."
     
     # Get the display ID (usually 1 for main display)
-    displayplacer "displayplacer 'id:1' res:2560x1440 hz:60 color_depth:8 scaling:on origin:(0,0) degree:0'" 2>/dev/null || true
+    ${pkgs.displayplacer}/bin/displayplacer "id:1 res:2560x1440 hz:60 color_depth:8 scaling:on origin:(0,0) degree:0" 2>/dev/null || true
     
     echo "Display configuration applied"
   '';
