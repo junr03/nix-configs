@@ -1,6 +1,13 @@
-{ agenix, config, pkgs, ... }:
+{
+  agenix,
+  config,
+  pkgs,
+  ...
+}:
 
-let user = "junr03"; in
+let
+  user = "junr03";
+in
 
 {
 
@@ -8,7 +15,7 @@ let user = "junr03"; in
     ../../modules/darwin/secrets.nix
     ../../modules/darwin/home-manager.nix
     ../../modules/shared
-     agenix.darwinModules.default
+    agenix.darwinModules.default
   ];
 
   # Setup user, packages, programs
@@ -16,14 +23,24 @@ let user = "junr03"; in
     package = pkgs.nix;
 
     settings = {
-      trusted-users = [ "@admin" "${user}" ];
-      substituters = [ "https://nix-community.cachix.org" "https://cache.nixos.org" ];
+      trusted-users = [
+        "@admin"
+        "${user}"
+      ];
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://cache.nixos.org"
+      ];
       trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
     };
 
     gc = {
       automatic = true;
-      interval = { Weekday = 0; Hour = 2; Minute = 0; };
+      interval = {
+        Weekday = 0;
+        Hour = 2;
+        Minute = 0;
+      };
       options = "--delete-older-than 30d";
     };
 
@@ -35,9 +52,28 @@ let user = "junr03"; in
   # Turn off NIX_PATH warnings now that we're using flakes
 
   # Load configuration that is shared across systems
-  environment.systemPackages = with pkgs; [
-    agenix.packages."${pkgs.system}".default
-  ] ++ (import ../../modules/shared/packages.nix { inherit pkgs; });
+  environment.systemPackages =
+    with pkgs;
+    [
+      agenix.packages."${pkgs.system}".default
+    ]
+    ++ (import ../../modules/shared/packages.nix { inherit pkgs; });
+
+  # Font configuration
+  fonts.packages = with pkgs; [
+    fira-code
+    nerd-fonts.fira-code
+  ];
+
+  # System activation scripts
+  system.activationScripts.extraActivation.text = ''
+    # Configure iTerm2 automatically on system rebuild
+    if [ -f /Users/${user}/.config/iterm2/configure-iterm2.applescript ]; then
+      echo "Configuring iTerm2..."
+      sudo -u ${user} osascript /Users/${user}/.config/iterm2/configure-iterm2.applescript 2>/dev/null || true
+      echo "iTerm2 configuration applied"
+    fi
+  '';
 
   system = {
     checks.verifyNixPath = false;
