@@ -1,8 +1,15 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
-let name = "Jose Ulises Nino Rivera";
-    user = "junr03";
-    email = "junr03@users.noreply.github.com"; in
+let
+  name = "Jose Ulises Nino Rivera";
+  user = "junr03";
+  email = "junr03@users.noreply.github.com";
+in
 {
   # Shared shell configuration
   zsh = {
@@ -11,14 +18,14 @@ let name = "Jose Ulises Nino Rivera";
     cdpath = [ "~/.local/share/src" ];
     plugins = [
       {
-          name = "powerlevel10k";
-          src = pkgs.zsh-powerlevel10k;
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
       {
-          name = "powerlevel10k-config";
-          src = lib.cleanSource ./config;
-          file = "p10k.zsh";
+        name = "powerlevel10k-config";
+        src = lib.cleanSource ./config;
+        file = "p10k.zsh";
       }
     ];
     initContent = lib.mkBefore ''
@@ -71,7 +78,7 @@ let name = "Jose Ulises Nino Rivera";
     extraConfig = {
       init.defaultBranch = "main";
       core = {
-	    editor = "vim";
+        editor = "vim";
         autocrlf = "input";
       };
       commit.gpgsign = false;
@@ -82,8 +89,15 @@ let name = "Jose Ulises Nino Rivera";
 
   vim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ vim-airline vim-airline-themes vim-startify vim-tmux-navigator ];
-    settings = { ignorecase = true; };
+    plugins = with pkgs.vimPlugins; [
+      vim-airline
+      vim-airline-themes
+      vim-startify
+      vim-tmux-navigator
+    ];
+    settings = {
+      ignorecase = true;
+    };
     extraConfig = ''
       "" General
       set number
@@ -187,29 +201,21 @@ let name = "Jose Ulises Nino Rivera";
 
       let g:airline_theme='bubblegum'
       let g:airline_powerline_fonts = 1
-      '';
-     };
+    '';
+  };
 
   ssh = {
     enable = true;
     includes = [
-      (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
-        "/home/${user}/.ssh/config_external"
-      )
-      (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-        "/Users/${user}/.ssh/config_external"
-      )
+      (lib.mkIf pkgs.stdenv.hostPlatform.isLinux "/home/${user}/.ssh/config_external")
+      (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "/Users/${user}/.ssh/config_external")
     ];
     matchBlocks = {
       "github.com" = {
         identitiesOnly = true;
         identityFile = [
-          (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
-            "/home/${user}/.ssh/id_ed25519"
-          )
-          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-            "/Users/${user}/.ssh/id_ed25519"
-          )
+          (lib.mkIf pkgs.stdenv.hostPlatform.isLinux "/home/${user}/.ssh/id_ed25519")
+          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "/Users/${user}/.ssh/id_ed25519")
         ];
       };
     };
@@ -225,7 +231,7 @@ let name = "Jose Ulises Nino Rivera";
       {
         plugin = power-theme;
         extraConfig = ''
-           set -g @tmux_power_theme 'gold'
+          set -g @tmux_power_theme 'gold'
         '';
       }
       {
@@ -296,8 +302,8 @@ let name = "Jose Ulises Nino Rivera";
       bind-key -T copy-mode-vi 'C-k' select-pane -U
       bind-key -T copy-mode-vi 'C-l' select-pane -R
       bind-key -T copy-mode-vi 'C-\' select-pane -l
-      '';
-    };
+    '';
+  };
 
   vscode = {
     enable = true;
@@ -309,7 +315,7 @@ let name = "Jose Ulises Nino Rivera";
         "workbench.colorTheme" = "Gruvbox Dark Medium";
         "extensions.autoCheckUpdates" = false;
         "extensions.autoUpdate" = false;
-        "github.copilot.nextEditSuggestions.enabled": true
+        "github.copilot.nextEditSuggestions.enabled" = true;
       };
 
       extensions = with pkgs.vscode-marketplace; [
