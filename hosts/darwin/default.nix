@@ -91,9 +91,6 @@ in
     # Current casks that should be installed (from your nix config)
     DESIRED_CASKS="${builtins.concatStringsSep " " (import ../../modules/darwin/casks.nix { })}"
 
-    # Get currently installed casks
-    INSTALLED_CASKS=$(brew list --cask 2>/dev/null || echo "")
-
     # Create state directory if it doesn't exist
     mkdir -p /etc/nix-darwin/state
     CASK_STATE_FILE="/etc/nix-darwin/state/managed-casks"
