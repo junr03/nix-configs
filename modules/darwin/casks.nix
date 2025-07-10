@@ -22,7 +22,6 @@ _:
   "notion-calendar"
 
   # Browsers
-  "firefox"
   "google-chrome"
 
   # Creative Tools
