@@ -23,6 +23,7 @@ _:
 
   # Browsers
   "firefox"
+  "google-chrome"
 
   # Creative Tools
   "adobe-creative-cloud"
