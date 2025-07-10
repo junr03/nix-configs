@@ -66,14 +66,68 @@ in
   ];
 
   # System activation scripts
-  system.activationScripts.extraActivation.text = ''
-    # Configure iTerm2 automatically on system rebuild
-    if [ -f /Users/${user}/.config/iterm2/configure-iterm2.applescript ]; then
-      echo "Configuring iTerm2..."
-      sudo -u ${user} osascript /Users/${user}/.config/iterm2/configure-iterm2.applescript 2>/dev/null || true
-      echo "iTerm2 configuration applied"
-    fi
-  '';
+  system.activationScripts = {
+    # Install Rosetta 2 early, before Homebrew
+    installRosetta = {
+      text = ''
+        echo "=== Installing Rosetta 2 ==="
+        if ! /usr/bin/pgrep -q oahd; then
+          echo "Installing Rosetta 2..."
+          sudo softwareupdate --install-rosetta --agree-to-license
+          echo "Rosetta 2 installed"
+        else
+          echo "Rosetta 2 is already installed"
+        fi
+      '';
+      deps = [
+        "users"
+        "groups"
+      ];
+    };
+
+    postActivation.text = ''
+      echo "=== Running custom activation scripts ==="
+
+      # Configure iTerm2 automatically on system rebuild
+      if [ -f /Users/${user}/.config/iterm2/configure-iterm2.applescript ]; then
+        echo "Configuring iTerm2..."
+        sudo -u ${user} osascript /Users/${user}/.config/iterm2/configure-iterm2.applescript 2>/dev/null || true
+        echo "iTerm2 configuration applied"
+      fi
+
+      # Managing Homebrew casks
+      echo "Managing Homebrew casks..."
+
+      # Current casks that should be installed (from your nix config)
+      DESIRED_CASKS="${builtins.concatStringsSep " " (import ../../modules/darwin/casks.nix { })}"
+
+      # Create state directory if it doesn't exist
+      mkdir -p /etc/nix-darwin/state
+      CASK_STATE_FILE="/etc/nix-darwin/state/managed-casks"
+
+      # Read previously managed casks
+      PREVIOUS_CASKS=""
+      if [ -f "$CASK_STATE_FILE" ]; then
+        PREVIOUS_CASKS=$(cat "$CASK_STATE_FILE")
+      fi
+
+      # Find casks to uninstall (were managed before but not in current list)
+      if [ -n "$PREVIOUS_CASKS" ]; then
+        for cask in $PREVIOUS_CASKS; do
+          if ! echo "$DESIRED_CASKS" | grep -q "\b$cask\b"; then
+            echo "Uninstalling removed cask: $cask"
+            sudo -u ${user} /opt/homebrew/bin/brew uninstall --cask "$cask"
+          fi
+        done
+      fi
+
+      # Update the state file with current desired casks
+      echo "$DESIRED_CASKS" > "$CASK_STATE_FILE"
+
+      echo "Cask management complete"
+      echo "=== Custom activation scripts complete ==="
+    '';
+  };
 
   system = {
     checks.verifyNixPath = false;

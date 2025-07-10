@@ -5,19 +5,24 @@ _:
   "iterm2"
 
   # Communication Tools
-  "notion"
   "slack"
   "zoom"
 
   # Utility Tools
   "loop"
   "tailscale" # GUI app for menu bar access
+  "yubico-authenticator" # GUI for YubiKey authentication
+  "yubico-yubikey-manager"
 
   # Entertainment Tools
   "spotify"
 
   # Productivity Tools
+  "notion"
+  "notion-calendar"
 
   # Browsers
-  "firefox"
+
+  # Creative Tools
+  "adobe-creative-cloud"
 ]
