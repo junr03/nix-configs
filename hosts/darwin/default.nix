@@ -116,7 +116,7 @@ in
         for cask in $PREVIOUS_CASKS; do
           if ! echo "$DESIRED_CASKS" | grep -q "\b$cask\b"; then
             echo "Uninstalling removed cask: $cask"
-            /opt/homebrew/bin/brew uninstall "$cask"
+            sudo -u ${user} /opt/homebrew/bin/brew uninstall --cask "$cask"
           fi
         done
       fi
