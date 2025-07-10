@@ -116,7 +116,7 @@ in
         for cask in $PREVIOUS_CASKS; do
           if ! echo "$DESIRED_CASKS" | grep -q "\b$cask\b"; then
             echo "Uninstalling removed cask: $cask"
-            brew uninstall "$cask" 2>/dev/null || echo "Failed to uninstall $cask (may not be installed)"
+            brew uninstall "$cask"
           fi
         done
       fi
