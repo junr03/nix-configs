@@ -7,5 +7,4 @@ in
 shared-packages
 ++ [
   dockutil
-  rosetta2
 ]
