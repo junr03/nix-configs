@@ -23,7 +23,7 @@ with pkgs;
   libfido2
 
   # Cloud-related tools and SDKs
-  # docker
+  docker
   # docker-compose
 
   # Networking tools
