@@ -66,14 +66,27 @@ in
   ];
 
   # System activation scripts
-  system.activationScripts.extraActivation.text = ''
-    # Configure iTerm2 automatically on system rebuild
-    if [ -f /Users/${user}/.config/iterm2/configure-iterm2.applescript ]; then
-      echo "Configuring iTerm2..."
-      sudo -u ${user} osascript /Users/${user}/.config/iterm2/configure-iterm2.applescript 2>/dev/null || true
-      echo "iTerm2 configuration applied"
-    fi
-  '';
+  system.activationScripts = {
+    iTerm2.text = ''
+      # Configure iTerm2 automatically on system rebuild
+      if [ -f /Users/${user}/.config/iterm2/configure-iterm2.applescript ]; then
+        echo "Configuring iTerm2..."
+        sudo -u ${user} osascript /Users/${user}/.config/iterm2/configure-iterm2.applescript 2>/dev/null || true
+        echo "iTerm2 configuration applied"
+      fi
+    '';
+
+    rosetta2.text = ''
+      # Install Rosetta 2 if not already installed
+      if ! /usr/bin/pgrep -q oahd; then
+        echo "Installing Rosetta 2..."
+        sudo softwareupdate --install-rosetta --agree-to-license
+        echo "Rosetta 2 installed"
+      else
+        echo "Rosetta 2 is already installed"
+      fi
+    '';
+  };
 
   system = {
     checks.verifyNixPath = false;
