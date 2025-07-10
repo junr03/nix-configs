@@ -1,5 +1,5 @@
 _:
 
 [
-  colima
+  "colima"
 ]
