@@ -86,6 +86,41 @@ in
         echo "Rosetta 2 is already installed"
       fi
     '';
+
+    manageCasks.text = ''
+      echo "Managing Homebrew casks..."
+
+      # Current casks that should be installed (from your nix config)
+      DESIRED_CASKS="${builtins.concatStringsSep " " (import ./modules/darwin/casks.nix { })}"
+
+      # Get currently installed casks
+      INSTALLED_CASKS=$(brew list --cask 2>/dev/null || echo "")
+
+      # Create state directory if it doesn't exist
+      mkdir -p /etc/nix-darwin/state
+      CASK_STATE_FILE="/etc/nix-darwin/state/managed-casks"
+
+      # Read previously managed casks
+      PREVIOUS_CASKS=""
+      if [ -f "$CASK_STATE_FILE" ]; then
+        PREVIOUS_CASKS=$(cat "$CASK_STATE_FILE")
+      fi
+
+      # Find casks to uninstall (were managed before but not in current list)
+      if [ -n "$PREVIOUS_CASKS" ]; then
+        for cask in $PREVIOUS_CASKS; do
+          if ! echo "$DESIRED_CASKS" | grep -q "\b$cask\b"; then
+            echo "Uninstalling removed cask: $cask"
+            brew uninstall --cask "$cask" 2>/dev/null || echo "Failed to uninstall $cask (may not be installed)"
+          fi
+        done
+      fi
+
+      # Update the state file with current desired casks
+      echo "$DESIRED_CASKS" > "$CASK_STATE_FILE"
+
+      echo "Cask management complete"
+    '';
   };
 
   system = {
