@@ -12,7 +12,7 @@ _:
   "loop"
   "logitech-options" # Logitech Options for mouse and keyboard customization
   "tailscale" # GUI app for menu bar access
-  "yubikey-manager" # YubiKey management tool
+  "yubico-yubikey-manager" # YubiKey management tool
 
   # Entertainment Tools
   "spotify"
