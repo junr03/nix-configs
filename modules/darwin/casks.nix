@@ -10,8 +10,8 @@ _:
 
   # Utility Tools
   "loop"
-  "logitech-options" # Logitech Options for mouse and keyboard customization
   "tailscale" # GUI app for menu bar access
+  "yubico-yubikey-manager"
 
   # Entertainment Tools
   "spotify"
