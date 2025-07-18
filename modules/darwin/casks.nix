@@ -21,6 +21,7 @@ _:
   # Productivity Tools
   "notion"
   "notion-calendar"
+  "shapr3d"
 
   # Browsers
 
