@@ -28,6 +28,26 @@ in
         file = "p10k.zsh";
       }
     ];
+    shellAliases = {
+      ll = "ls -lh --color=auto";
+
+      # Use ripgrep for searching
+      search = "rg -p --glob '!node_modules/*' \$@";
+
+      # Use difftastic for diffing
+      diff = "difft";
+
+      # Use ghostscript for PDF compression
+      compress-pdf = ''
+        compress_pdf() {
+          if [ $# -ne 2 ]; then
+            echo "Usage: compress-pdf <input.pdf> <output.pdf>"
+            return 1
+          fi
+          gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$2" "$1"
+        }; compress_pdf
+      '';
+    };
     initContent = lib.mkBefore ''
       if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
         . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
