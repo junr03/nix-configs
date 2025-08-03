@@ -5,6 +5,7 @@ _:
   "iterm2"
 
   # Communication Tools
+  "microsoft-outlook"
   "microsoft-teams"
   "slack"
   "zoom"
