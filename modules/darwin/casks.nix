@@ -5,8 +5,11 @@ _:
   "iterm2"
 
   # Communication Tools
+  "microsoft-excel"
   "microsoft-outlook"
   "microsoft-teams"
+  "microsoft-word"
+  "onedrive"
   "slack"
   "zoom"
 
