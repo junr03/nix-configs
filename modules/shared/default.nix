@@ -2,6 +2,13 @@
 
 {
 
+  imports = [
+    ./schema.nix
+    ./nix.nix
+    ./fonts.nix
+    ./secrets.nix
+  ];
+
   nixpkgs = {
     config = {
       allowUnfree = true;

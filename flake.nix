@@ -1,5 +1,14 @@
 {
   description = "Starter Configuration with secrets for MacOS and NixOS";
+
+  # Centralized user configuration
+  userConfig = {
+    username = "junr03";
+    name = "Jose Ulises Nino Rivera";
+    email = "junr03@users.noreply.github.com";
+    sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOk8iAnIaa1deoc7jw8YACPNVka1ZFJxhnU4G74TmS+p";
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     agenix.url = "github:ryantm/agenix";
@@ -51,7 +60,7 @@
       nix-vscode-extensions,
     }@inputs:
     let
-      user = "junr03";
+      user = self.userConfig.username;
       linuxSystems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -139,6 +148,9 @@
                 autoMigrate = true;
               };
             }
+            {
+              userConfig = self.userConfig;
+            }
             ./hosts/darwin
           ];
         }
@@ -158,6 +170,9 @@
                 useUserPackages = true;
                 users.${user} = import ./modules/nixos/home-manager.nix;
               };
+            }
+            {
+              userConfig = self.userConfig;
             }
             ./hosts/nixos
           ];
