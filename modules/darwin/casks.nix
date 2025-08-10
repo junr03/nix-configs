@@ -7,6 +7,7 @@ _:
   # Communication Tools
   "microsoft-excel"
   "microsoft-outlook"
+  "microsoft-powerpoint"
   "microsoft-teams"
   "microsoft-word"
   "onedrive"
