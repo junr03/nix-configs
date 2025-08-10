@@ -11,6 +11,7 @@ _:
   "zoom"
 
   # Utility Tools
+  "cursor"
   "logitech-options" # Logitech Options for mouse and keyboard customization
   "loop"
   "tailscale" # GUI app for menu bar access
