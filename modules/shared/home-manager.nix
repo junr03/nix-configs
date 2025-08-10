@@ -6,9 +6,9 @@
 }:
 
 let
-  name = "Jose Ulises Nino Rivera";
-  user = "junr03";
-  email = "junr03@users.noreply.github.com";
+  name = config.userConfig.name or "Jose Ulises Nino Rivera";
+  user = config.userConfig.username or "junr03";
+  email = config.userConfig.email or "junr03@users.noreply.github.com";
 in
 {
   # Shared shell configuration

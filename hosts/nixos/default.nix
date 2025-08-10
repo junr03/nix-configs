@@ -7,8 +7,11 @@
 }:
 
 let
-  user = "junr03";
-  keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOk8iAnIaa1deoc7jw8YACPNVka1ZFJxhnU4G74TmS+p" ];
+  user = config.userConfig.username or "junr03";
+  keys = [
+    config.userConfig.sshKey
+      or "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOk8iAnIaa1deoc7jw8YACPNVka1ZFJxhnU4G74TmS+p"
+  ];
 in
 {
   imports = [
@@ -53,26 +56,10 @@ in
     interfaces."%INTERFACE%".useDHCP = true;
   };
 
-  nix = {
-    nixPath = [ "nixos-config=/home/${user}/.local/share/src/nixos-config:/etc/nixos" ];
-    settings = {
-      allowed-users = [ "${user}" ];
-      trusted-users = [
-        "@admin"
-        "${user}"
-      ];
-      substituters = [
-        "https://nix-community.cachix.org"
-        "https://cache.nixos.org"
-      ];
-      trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
-    };
-
-    package = pkgs.nix;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
+  # Nix settings are now handled by modules/shared/nix.nix
+  # Additional NixOS-specific settings
+  nix.nixPath = [ "nixos-config=/home/${user}/.local/share/src/nixos-config:/etc/nixos" ];
+  nix.settings.allowed-users = [ "${user}" ];
 
   # Manages keys and such
   programs = {
@@ -315,14 +302,7 @@ in
     ];
   };
 
-  fonts.packages = with pkgs; [
-    dejavu_fonts
-    feather-font # from overlay
-    jetbrains-mono
-    font-awesome
-    noto-fonts
-    noto-fonts-emoji
-  ];
+  # Font configuration is now handled by modules/shared/fonts.nix
 
   environment.systemPackages = with pkgs; [
     agenix.packages."${pkgs.system}".default # "x86_64-linux"
