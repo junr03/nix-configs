@@ -238,6 +238,13 @@ in
           (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "/Users/${user}/.ssh/id_ed25519")
         ];
       };
+      "electricpeak.net" = {
+        identitiesOnly = true;
+        identityFile = [
+          (lib.mkIf pkgs.stdenv.hostPlatform.isLinux "/home/${user}/.ssh/electricpeak")
+          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "/Users/${user}/.ssh/electricpeak")
+        ];
+      };
     };
   };
 
