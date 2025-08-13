@@ -2,6 +2,7 @@ _:
 
 [
   # Development Tools
+  "cursor"
   "iterm2"
 
   # Communication Tools
