@@ -2,7 +2,6 @@ _:
 
 [
   # Development Tools
-  "cursor"
   "iterm2"
 
   # Communication Tools
@@ -11,15 +10,14 @@ _:
   "microsoft-powerpoint"
   "microsoft-teams"
   "microsoft-word"
-  "onedrive"
   "slack"
   "zoom"
 
   # Utility Tools
-  "logitech-options" # Logitech Options for mouse and keyboard customization
+  "logitech-options"
   "loop"
-  "tailscale" # GUI app for menu bar access
-  "yubico-authenticator" # GUI for YubiKey authentication
+  "tailscale"
+  "yubico-authenticator"
   "yubico-yubikey-manager"
 
   # Entertainment Tools
