@@ -63,4 +63,5 @@ with pkgs;
   # Python packages
   python3
   virtualenv
+  dockutil
 ]
