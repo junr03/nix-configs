@@ -24,15 +24,12 @@ self: super: with super; {
         cp $src/feather.ttf $out/share/fonts/truetype/
       '';
 
-      meta = with lib; {
-        homepage = "https://www.feathericons.com/";
-        description = "Set of font icons from the open source collection Feather Icons";
-        license = licenses.mit;
-        maintainers = [ maintainers.dlyons ];
-        platforms = [
-          platforms.x86_64-linux
-          platforms.x86_64-darwin
-        ];
-      };
+        meta = with lib; {
+          homepage = "https://www.feathericons.com/";
+          description = "Set of font icons from the open source collection Feather Icons";
+          license = licenses.mit;
+          maintainers = [ maintainers.dlyons ];
+          platforms = platforms.darwin;
+        };
     };
 }
