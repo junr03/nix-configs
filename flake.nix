@@ -1,5 +1,5 @@
 {
-  description = "Starter Configuration with secrets for MacOS and NixOS";
+  description = "Starter configuration with secrets for macOS";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     agenix.url = "github:ryantm/agenix";
@@ -26,41 +26,32 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     secrets = {
       url = "git+ssh://git@github.com/junr03/nix-secrets.git";
       flake = false;
     };
   };
   outputs =
-    {
-      self,
-      darwin,
-      nix-homebrew,
-      homebrew-bundle,
-      homebrew-core,
-      homebrew-cask,
-      home-manager,
-      nixpkgs,
-      disko,
-      agenix,
-      secrets,
-      nix-vscode-extensions,
-    }@inputs:
+      {
+        self,
+        darwin,
+        nix-homebrew,
+        homebrew-bundle,
+        homebrew-core,
+        homebrew-cask,
+        home-manager,
+        nixpkgs,
+        agenix,
+        secrets,
+        nix-vscode-extensions,
+      }@inputs:
     let
       user = "junr03";
-      linuxSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
       darwinSystems = [
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-      forAllSystems = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
+      forAllSystems = f: nixpkgs.lib.genAttrs darwinSystems f;
       devShell =
         system:
         let
@@ -92,15 +83,6 @@
           '')
         }/bin/${scriptName}";
       };
-      mkLinuxApps = system: {
-        "apply" = mkApp "apply" system;
-        "build-switch" = mkApp "build-switch" system;
-        "copy-keys" = mkApp "copy-keys" system;
-        "create-keys" = mkApp "create-keys" system;
-        "check-keys" = mkApp "check-keys" system;
-        "install" = mkApp "install" system;
-        "install-with-secrets" = mkApp "install-with-secrets" system;
-      };
       mkDarwinApps = system: {
         "apply" = mkApp "apply" system;
         "build" = mkApp "build" system;
@@ -113,9 +95,7 @@
     in
     {
       devShells = forAllSystems devShell;
-      apps =
-        nixpkgs.lib.genAttrs linuxSystems mkLinuxApps
-        // nixpkgs.lib.genAttrs darwinSystems mkDarwinApps;
+      apps = nixpkgs.lib.genAttrs darwinSystems mkDarwinApps;
 
       darwinConfigurations = nixpkgs.lib.genAttrs darwinSystems (
         system:
@@ -140,26 +120,6 @@
               };
             }
             ./hosts/darwin
-          ];
-        }
-      );
-
-      nixosConfigurations = nixpkgs.lib.genAttrs linuxSystems (
-        system:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = inputs;
-          modules = [
-            disko.nixosModules.disko
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${user} = import ./modules/nixos/home-manager.nix;
-              };
-            }
-            ./hosts/nixos
           ];
         }
       );

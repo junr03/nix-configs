@@ -17,11 +17,11 @@ end tell
 tell application "iTerm2"
 	-- Create a new profile or modify default
 	try
-		set myProfile to (first profile whose name is "NixOS Profile")
+        set myProfile to (first profile whose name is "Nix Profile")
 	on error
 		-- Create new profile if it doesn't exist
 		set myProfile to (create profile with default settings)
-		set name of myProfile to "NixOS Profile"
+        set name of myProfile to "Nix Profile"
 	end try
 	
 	-- Configure font settings
@@ -64,11 +64,11 @@ tell application "iTerm2"
 		set working directory to "/Users/junr03"
 		
 		-- Make this the default profile
-		set default profile to "NixOS Profile"
+                set default profile to "Nix Profile"
 	end tell
 	
 	-- Set iTerm2 to use the new profile as default
-	set default profile to "NixOS Profile"
+        set default profile to "Nix Profile"
 end tell
 
 -- Only show notification if running interactively (not during system rebuild)

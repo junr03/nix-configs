@@ -1,5 +1,5 @@
 ## Shared
-Much of the code running on MacOS or NixOS is actually found here.
+Much of the code running on macOS is actually found here.
 
 This configuration gets imported by both modules. Some configuration examples include `git`, `zsh`, `vim`, and `tmux`.
 
