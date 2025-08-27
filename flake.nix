@@ -47,10 +47,7 @@
       }@inputs:
     let
       user = "junr03";
-      darwinSystems = [
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
+        darwinSystems = [ "aarch64-darwin" ];
       forAllSystems = f: nixpkgs.lib.genAttrs darwinSystems f;
       devShell =
         system:
@@ -119,7 +116,7 @@
                 autoMigrate = true;
               };
             }
-            ./hosts/darwin
+              ./hosts
           ];
         }
       );

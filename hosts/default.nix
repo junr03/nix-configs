@@ -12,9 +12,9 @@ in
 {
 
   imports = [
-    ../../modules/secrets.nix
-    ../../modules/home-manager.nix
-    ../../modules
+    ../modules/secrets.nix
+    ../modules/home-manager.nix
+    ../modules
     agenix.darwinModules.default
   ];
 
@@ -57,7 +57,7 @@ in
     [
       agenix.packages."${pkgs.system}".default
     ]
-    ++ (import ../../modules/packages.nix { inherit pkgs; });
+    ++ (import ../modules/packages.nix { inherit pkgs; });
 
   # Font configuration
   fonts.packages = with pkgs; [
@@ -99,7 +99,7 @@ in
       echo "Managing Homebrew casks..."
 
       # Current casks that should be installed (from your nix config)
-      DESIRED_CASKS="${builtins.concatStringsSep " " (import ../../modules/casks.nix { })}"
+      DESIRED_CASKS="${builtins.concatStringsSep " " (import ../modules/casks.nix { })}"
 
       # Create state directory if it doesn't exist
       mkdir -p /etc/nix-darwin/state
