@@ -381,8 +381,8 @@ in
               userSettings = {
                 "editor.formatOnSave" = true;
                 "workbench.colorTheme" = "Gruvbox Dark Medium";
-                "extensions.autoCheckUpdates" = false;
-                "extensions.autoUpdate" = false;
+                "extensions.autoCheckUpdates" = true;
+                "extensions.autoUpdate" = true;
                 "github.copilot.nextEditSuggestions.enabled" = true;
                 "terminal.integrated.fontFamily" = "FiraCode Nerd Font";
                 "terminal.integrated.fontSize" = 14;
