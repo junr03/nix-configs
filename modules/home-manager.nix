@@ -39,7 +39,7 @@ in
     #
     # If you have previously added these apps to your Mac App Store profile (but not installed them on this system),
     # you may receive an error message "Redownload Unavailable with This Apple ID".
-      # This message is safe to ignore.
+    # This message is safe to ignore.
 
     masApps = {
       #"1password" = 1333542190;
@@ -280,12 +280,12 @@ in
             matchBlocks = {
               "github.com" = {
                 identitiesOnly = true;
-                identityFile = "/Users/${user}/.ssh/github"
+                identityFile = "/Users/${user}/.ssh/github";
               };
 
               "electricpeak.net" = {
                 identitiesOnly = true;
-                identityFile = "/Users/${user}/.ssh/electricpeak"
+                identityFile = "/Users/${user}/.ssh/electricpeak";
               };
             };
           };

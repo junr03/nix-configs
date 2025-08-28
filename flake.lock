@@ -297,24 +297,7 @@
         "homebrew-core": "homebrew-core",
         "nix-homebrew": "nix-homebrew",
         "nix-vscode-extensions": "nix-vscode-extensions",
-        "nixpkgs": "nixpkgs_4",
-        "secrets": "secrets"
-      }
-    },
-    "secrets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1751843008,
-        "narHash": "sha256-nIjtOVneI0jelV1yRBwLqttPQWeWagKT5A2hHlDzQfc=",
-        "ref": "refs/heads/main",
-        "rev": "be90329d27cf22cf4135b1199d4af4d252633ae1",
-        "revCount": 2,
-        "type": "git",
-        "url": "ssh://git@github.com/junr03/nix-secrets.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/junr03/nix-secrets.git"
+        "nixpkgs": "nixpkgs_4"
       }
     },
     "systems": {
