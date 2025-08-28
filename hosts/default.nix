@@ -49,8 +49,6 @@ in
     '';
   };
 
-  # Turn off NIX_PATH warnings now that we're using flakes
-
   # Load configuration that is shared across systems
   environment.systemPackages =
     with pkgs;
@@ -94,37 +92,6 @@ in
         sudo -u ${user} osascript /Users/${user}/.config/iterm2/configure-iterm2.applescript 2>/dev/null || true
         echo "iTerm2 configuration applied"
       fi
-
-      # Managing Homebrew casks
-      echo "Managing Homebrew casks..."
-
-      # Current casks that should be installed (from your nix config)
-      DESIRED_CASKS="${builtins.concatStringsSep " " (import ../modules/casks.nix { })}"
-
-      # Create state directory if it doesn't exist
-      mkdir -p /etc/nix-darwin/state
-      CASK_STATE_FILE="/etc/nix-darwin/state/managed-casks"
-
-      # Read previously managed casks
-      PREVIOUS_CASKS=""
-      if [ -f "$CASK_STATE_FILE" ]; then
-        PREVIOUS_CASKS=$(cat "$CASK_STATE_FILE")
-      fi
-
-      # Find casks to uninstall (were managed before but not in current list)
-      if [ -n "$PREVIOUS_CASKS" ]; then
-        for cask in $PREVIOUS_CASKS; do
-          if ! echo "$DESIRED_CASKS" | grep -q "\b$cask\b"; then
-            echo "Uninstalling removed cask: $cask"
-            sudo -u ${user} /opt/homebrew/bin/brew uninstall --cask "$cask"
-          fi
-        done
-      fi
-
-      # Update the state file with current desired casks
-      echo "$DESIRED_CASKS" > "$CASK_STATE_FILE"
-
-      echo "Cask management complete"
       echo "=== Custom activation scripts complete ==="
     '';
   };

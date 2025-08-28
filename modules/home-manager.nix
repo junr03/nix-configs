@@ -218,7 +218,7 @@ in
               let g:airline_powerline_fonts = 1
 
               "" Local keys and such
-              let mapleader="," 
+              let mapleader=","
               let maplocalleader=" "
 
               "" Change cursor on mode
@@ -276,17 +276,16 @@ in
           };
           ssh = {
             enable = true;
-            includes = [
-              (lib.mkIf pkgs.stdenv.hostPlatform.isLinux "/home/${user}/.ssh/config_external")
-              (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "/Users/${user}/.ssh/config_external")
-            ];
+
             matchBlocks = {
               "github.com" = {
                 identitiesOnly = true;
-                identityFile = [
-                  (lib.mkIf pkgs.stdenv.hostPlatform.isLinux "/home/${user}/.ssh/id_ed25519")
-                  (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "/Users/${user}/.ssh/id_ed25519")
-                ];
+                identityFile = "/Users/${user}/.ssh/github"
+              };
+
+              "electricpeak.net" = {
+                identitiesOnly = true;
+                identityFile = "/Users/${user}/.ssh/electricpeak"
               };
             };
           };

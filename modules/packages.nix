@@ -23,12 +23,6 @@ with pkgs;
   gnupg
   libfido2
 
-  # Cloud-related tools and SDKs
-  docker
-  # docker-compose
-
-  # Networking tools
-
   # Media-related packages
   dejavu_fonts
   ffmpeg
@@ -50,7 +44,6 @@ with pkgs;
   htop
   hunspell
   iftop
-  jetbrains-mono
   jq
   ripgrep
   tree
