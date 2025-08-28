@@ -1,5 +1,5 @@
 {
-  description = "Starter configuration with secrets for macOS";
+  description = "Nix configuration for Mac Clients";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     agenix.url = "github:ryantm/agenix";
@@ -26,24 +26,19 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    secrets = {
-      url = "git+ssh://git@github.com/junr03/nix-secrets.git";
-      flake = false;
-    };
   };
   outputs =
       {
-        self,
-        darwin,
-        nix-homebrew,
-        homebrew-bundle,
-        homebrew-core,
-        homebrew-cask,
-        home-manager,
-        nixpkgs,
         agenix,
-        secrets,
+        darwin,
+        home-manager,
+        homebrew-bundle,
+        homebrew-cask,
+        homebrew-core,
+        nix-homebrew,
         nix-vscode-extensions,
+        nixpkgs,
+        self,
       }@inputs:
     let
       user = "junr03";
@@ -65,7 +60,7 @@
                 age-plugin-yubikey
               ];
               shellHook = with pkgs; ''
-                export EDITOR=vim
+                export EDITOR=code
               '';
             };
         };
@@ -84,9 +79,6 @@
         "apply" = mkApp "apply" system;
         "build" = mkApp "build" system;
         "build-switch" = mkApp "build-switch" system;
-        "copy-keys" = mkApp "copy-keys" system;
-        "create-keys" = mkApp "create-keys" system;
-        "check-keys" = mkApp "check-keys" system;
         "rollback" = mkApp "rollback" system;
       };
     in
