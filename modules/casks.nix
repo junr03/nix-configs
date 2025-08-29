@@ -2,7 +2,6 @@ _:
 
 [
   # Development Tools
-  "cursor"
   "iterm2"
 
   # Communication Tools
@@ -16,7 +15,6 @@ _:
   "zoom"
 
   # Utility Tools
-  "logitech-options" # Logitech Options for mouse and keyboard customization
   "loop"
   "tailscale" # GUI app for menu bar access
   "yubico-authenticator" # GUI for YubiKey authentication
