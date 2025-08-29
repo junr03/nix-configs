@@ -54,6 +54,7 @@ in
     with pkgs;
     [
       agenix.packages."${pkgs.system}".default
+      age-plugin-yubikey
     ]
     ++ (import ../modules/packages.nix { inherit pkgs; });
 
