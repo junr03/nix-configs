@@ -1,15 +1,30 @@
-{ user, pkgs, config, ... }:
+{
+  user,
+  pkgs,
+  config,
+  ...
+}:
 
 let
   xdg_configHome = "${config.users.users.${user}.home}/.config";
   xdg_dataHome = "${config.users.users.${user}.home}/.local/share";
   xdg_stateHome = "${config.users.users.${user}.home}/.local/state";
-  # githubPublicKey = "ssh-ed25519 AAAA...";
+  githubPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFepB8gnsQw2fqna5epnucL2/UBL+1pQoh26GlKH29ye recruiting@junr03.com";
+  electricpeakPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHVuvU35QsaFextBWDvK/Bsz+2YGwpMO+J4dFZMukuj7 admin@electricpeak.net";
 in
 {
-  # ".ssh/id_github.pub" = {
-  #   text = githubPublicKey;
-  # };
+  ".age" = {
+    source = ../secrets;
+    recursive = true;
+  };
+
+  ".ssh/github.pub" = {
+    text = githubPublicKey;
+  };
+
+  ".ssh/electricpeak.pub" = {
+    text = electricpeakPublicKey;
+  };
 
   # iTerm2 AppleScript configuration script
   ".config/iterm2/configure-iterm2.applescript" = {
