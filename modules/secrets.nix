@@ -18,7 +18,7 @@ in
   age.secrets."github-ssh-key" = {
     symlink = true;
     path = "/Users/${user}/.ssh/github";
-    file = "/Users/${user}/.age/secrets/github-ssh-key.age";
+    file = ../secrets/github-ssh-key.age;
     mode = "600";
     owner = "${user}";
     group = "staff";
@@ -27,7 +27,7 @@ in
   age.secrets."electricpeak-ssh-key" = {
     symlink = true;
     path = "/Users/${user}/.ssh/electricpeak";
-    file = "/Users/${user}/.age/secrets/electricpeak-ssh-key.age";
+    file = ../secrets/electricpeak-ssh-key.age;
     mode = "600";
     owner = "${user}";
     group = "staff";
