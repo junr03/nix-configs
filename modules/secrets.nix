@@ -30,4 +30,13 @@ in
     owner = "${user}";
     group = "staff";
   };
+
+  age.secrets."test" = {
+    symlink = true;
+    path = "/Users/${user}/.ssh/test";
+    file = ../secrets/test.age;
+    mode = "600";
+    owner = "${user}";
+    group = "staff";
+  };
 }

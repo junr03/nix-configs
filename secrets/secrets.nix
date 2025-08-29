@@ -4,4 +4,5 @@ in
 {
   "electricpeak-ssh-key.age".publicKeys = [ nix-configs-identity-pub-key ];
   "github-ssh-key.age".publicKeys = [ nix-configs-identity-pub-key ];
+  "test.age".publicKeys = [ nix-configs-identity-pub-key ];
 }
