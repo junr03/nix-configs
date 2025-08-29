@@ -2,7 +2,6 @@
   config,
   pkgs,
   agenix,
-  secrets,
   ...
 }:
 
@@ -11,24 +10,26 @@ let
 in
 {
   age.identityPaths = [
-    "../secrets/identity.txt"
+    "/Users/${user}/.age/identities/yubikey_5c.txt"
+    "/Users/${user}/.age/identities/yubikey_5c_nano.txt"
+    "/Users/${user}/.age/identities/yubikey_5c_nfc.txt"
   ];
 
-  # age.secrets."github-ssh-key" = {
-  #   symlink = true;
-  #   path = "/Users/${user}/.ssh/id_github";
-  #   file =  "${secrets}/github-ssh-key.age";
-  #   mode = "600";
-  #   owner = "${user}";
-  #   group = "staff";
-  # };
+  age.secrets."github-ssh-key" = {
+    symlink = true;
+    path = "/Users/${user}/.ssh/github";
+    file = "/Users/${user}/.age/secrets/github-ssh-key.age";
+    mode = "600";
+    owner = "${user}";
+    group = "staff";
+  };
 
-  # age.secrets."github-signing-key" = {
-  #   symlink = false;
-  #   path = "/Users/${user}/.ssh/pgp_github.key";
-  #   file =  "${secrets}/github-signing-key.age";
-  #   mode = "600";
-  #   owner = "${user}";
-  # };
-
+  age.secrets."electricpeak-ssh-key" = {
+    symlink = true;
+    path = "/Users/${user}/.ssh/electricpeak";
+    file = "/Users/${user}/.age/secrets/electricpeak-ssh-key.age";
+    mode = "600";
+    owner = "${user}";
+    group = "staff";
+  };
 }
