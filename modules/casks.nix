@@ -3,6 +3,7 @@ _:
 [
   # Development Tools
   "iterm2"
+  "ghostty"
 
   # Communication Tools
   "microsoft-excel"
@@ -10,14 +11,13 @@ _:
   "microsoft-powerpoint"
   "microsoft-teams"
   "microsoft-word"
-  "onedrive"
   "slack"
   "zoom"
 
   # Utility Tools
   "loop"
-  "tailscale" # GUI app for menu bar access
-  "yubico-authenticator" # GUI for YubiKey authentication
+  "tailscale"
+  "yubico-authenticator"
   "yubico-yubikey-manager"
 
   # Entertainment Tools

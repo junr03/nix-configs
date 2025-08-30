@@ -12,9 +12,9 @@ in
 {
 
   imports = [
-    ../modules/secrets.nix
-    ../modules/home-manager.nix
-    ../modules
+    ./secrets.nix
+    ./home-manager.nix
+    ./.
     agenix.darwinModules.default
   ];
 
@@ -56,7 +56,7 @@ in
       agenix.packages."${pkgs.system}".default
       age-plugin-yubikey
     ]
-    ++ (import ../modules/packages.nix { inherit pkgs; });
+    ++ (import ./packages.nix { inherit pkgs; });
 
   # Font configuration
   fonts.packages = with pkgs; [
