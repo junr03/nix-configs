@@ -1,7 +1,5 @@
-{ pkgs }:
-
-with pkgs;
-[
+{pkgs}:
+with pkgs; [
   # General packages for development and system management
   aspell
   aspellDicts.en
@@ -16,6 +14,7 @@ with pkgs;
   wget
   zip
   gh
+  pre-commit
 
   # Encryption and security tools
   age

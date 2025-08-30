@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+      - id: alejandra
+        name: Format Nix files with alejandra
+        entry: nix --extra-experimental-features 'nix-command flakes' --option flake-registry '' run github:NixOS/nixpkgs#alejandra --
+        language: system
+        files: '\.nix$'
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json

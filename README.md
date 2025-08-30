@@ -67,3 +67,23 @@ Configuration for provisioning macOS machines with [Nix](https://nixos.org), [`n
    - Rebuild and switch after making changes: `nix run .#build-switch`
    - Build without switching: `nix run .#build`
    - Roll back to a previous generation: `nix run .#rollback`
+
+## Development
+
+This repository uses `pre-commit` for linting and formatting. Install the hooks with:
+
+```sh
+pre-commit install
+```
+
+Run the checks locally before committing:
+
+```sh
+pre-commit run --all-files
+```
+
+Nix files can be formatted uniformly using `nix fmt` thanks to the flake's `formatter` attribute:
+
+```sh
+nix fmt
+```
