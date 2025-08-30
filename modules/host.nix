@@ -83,18 +83,6 @@ in
         "groups"
       ];
     };
-
-    postActivation.text = ''
-      echo "=== Running custom activation scripts ==="
-
-      # Configure iTerm2 automatically on system rebuild
-      if [ -f /Users/${user}/.config/iterm2/configure-iterm2.applescript ]; then
-        echo "Configuring iTerm2..."
-        sudo -u ${user} osascript /Users/${user}/.config/iterm2/configure-iterm2.applescript 2>/dev/null || true
-        echo "iTerm2 configuration applied"
-      fi
-      echo "=== Custom activation scripts complete ==="
-    '';
   };
 
   system = {
