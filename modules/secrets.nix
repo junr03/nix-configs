@@ -3,9 +3,11 @@
   pkgs,
   agenix,
   ...
-}: let
+}:
+let
   user = "junr03";
-in {
+in
+{
   age.identityPaths = [
     "/Users/${user}/.ssh/blacktail"
   ];

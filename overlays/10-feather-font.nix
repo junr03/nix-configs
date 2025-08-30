@@ -1,9 +1,9 @@
-self: super:
-with super; {
-  feather-font = let
-    version = "1.0";
-    pname = "feather-font";
-  in
+self: super: with super; {
+  feather-font =
+    let
+      version = "1.0";
+      pname = "feather-font";
+    in
     stdenv.mkDerivation {
       name = "${pname}-${version}";
 
@@ -12,7 +12,7 @@ with super; {
         sha256 = "sha256-Zsz8/qn7XAG6BVp4XdqooEqioFRV7bLH0bQkHZvFbsg=";
       };
 
-      buildInputs = [unzip];
+      buildInputs = [ unzip ];
       phases = [
         "unpackPhase"
         "installPhase"
@@ -27,7 +27,7 @@ with super; {
         homepage = "https://www.feathericons.com/";
         description = "Set of font icons from the open source collection Feather Icons";
         license = licenses.mit;
-        maintainers = [maintainers.dlyons];
+        maintainers = [ maintainers.dlyons ];
         platforms = platforms.darwin;
       };
     };
