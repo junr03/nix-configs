@@ -85,6 +85,7 @@
     {
       devShells = forAllSystems devShell;
       apps = nixpkgs.lib.genAttrs darwinSystems mkDarwinApps;
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
       darwinConfigurations = nixpkgs.lib.genAttrs darwinSystems (
         system:

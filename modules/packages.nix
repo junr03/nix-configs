@@ -16,6 +16,7 @@ with pkgs;
   wget
   zip
   gh
+  pre-commit
 
   # Encryption and security tools
   age
