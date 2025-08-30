@@ -1,9 +1,9 @@
 repos:
   - repo: local
     hooks:
-      - id: alejandra
-        name: Format Nix files with alejandra
-        entry: nix --extra-experimental-features 'nix-command flakes' --option flake-registry '' run github:NixOS/nixpkgs#alejandra --
+      - id: nixfmt
+        name: Format Nix files with nixfmt
+        entry: nixfmt
         language: system
         files: '\.nix$'
   - repo: https://github.com/pre-commit/pre-commit-hooks
