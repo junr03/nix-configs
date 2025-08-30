@@ -3,14 +3,9 @@
   config,
   pkgs,
   ...
-}:
-
-let
+}: let
   user = "junr03";
-in
-
-{
-
+in {
   imports = [
     ./secrets.nix
     ./home-manager.nix
@@ -31,7 +26,7 @@ in
         "https://nix-community.cachix.org"
         "https://cache.nixos.org"
       ];
-      trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
+      trusted-public-keys = ["cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="];
     };
 
     gc = {
@@ -50,13 +45,12 @@ in
   };
 
   # Load configuration that is shared across systems
-  environment.systemPackages =
-    with pkgs;
+  environment.systemPackages = with pkgs;
     [
       agenix.packages."${pkgs.system}".default
       age-plugin-yubikey
     ]
-    ++ (import ./packages.nix { inherit pkgs; });
+    ++ (import ./packages.nix {inherit pkgs;});
 
   # Font configuration
   fonts.packages = with pkgs; [
