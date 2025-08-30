@@ -28,21 +28,21 @@
     };
   };
   outputs =
-      {
-        agenix,
-        darwin,
-        home-manager,
-        homebrew-bundle,
-        homebrew-cask,
-        homebrew-core,
-        nix-homebrew,
-        nix-vscode-extensions,
-        nixpkgs,
-        self,
-      }@inputs:
+    {
+      agenix,
+      darwin,
+      home-manager,
+      homebrew-bundle,
+      homebrew-cask,
+      homebrew-core,
+      nix-homebrew,
+      nix-vscode-extensions,
+      nixpkgs,
+      self,
+    }@inputs:
     let
       user = "junr03";
-        darwinSystems = [ "aarch64-darwin" ];
+      darwinSystems = [ "aarch64-darwin" ];
       forAllSystems = f: nixpkgs.lib.genAttrs darwinSystems f;
       devShell =
         system:
@@ -93,6 +93,7 @@
           specialArgs = inputs;
           modules = [
             { nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ]; }
+            ./modules/host.nix # Load host first to ensure Rosetta activation script runs before Homebrew
             home-manager.darwinModules.home-manager
             nix-homebrew.darwinModules.nix-homebrew
             {
@@ -108,7 +109,6 @@
                 autoMigrate = true;
               };
             }
-              ./hosts
           ];
         }
       );

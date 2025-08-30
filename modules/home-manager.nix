@@ -137,6 +137,9 @@ in
 
               # Always color ls and group directories
               alias ls='ls --color=auto'
+
+              # Path to iCloud Drive
+              alias icloud='cd $HOME/Library/Mobile Documents/com~apple~CloudDocs'
             '';
           };
           git = {

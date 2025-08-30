@@ -10,7 +10,7 @@ let
 in
 {
   age.identityPaths = [
-    "/Users/${user}/.ssh/nix_configs_identity"
+    "/Users/${user}/.ssh/blacktail"
   ];
 
   age.secrets."github-ssh-key" = {
