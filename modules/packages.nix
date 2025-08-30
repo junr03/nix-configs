@@ -1,5 +1,6 @@
-{pkgs}:
-with pkgs; [
+{ pkgs }:
+with pkgs;
+[
   # General packages for development and system management
   aspell
   aspellDicts.en
